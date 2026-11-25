@@ -689,17 +689,17 @@ main { overflow-x: clip; }
 .f-ic { display: block; width: 3.2em; height: 3.2em; border-radius: 50%; background: #4a3fe0; position: relative; }
 .f-ic::after { content: ""; position: absolute; left: 1.05em; top: .75em; width: .8em; height: 1.4em; border: solid #fff; border-width: 0 .28em .28em 0; transform: rotate(45deg); }
 .f-bars { display: flex; align-items: flex-end; gap: .9em; height: 8em; }
-.f-bars u { flex: 1; height: var(--v); background: #dfe1ee; border-radius: 3px 3px 0 0; transform-origin: 50% 100%; animation: f-bar 3.2s ease-in-out infinite alternate; animation-delay: var(--dl); }
+.f-bars u { flex: 1; height: var(--v); background: #dfe1ee; border-radius: 3px 3px 0 0; transform-origin: 50% 100%; animation: f-bar 2.2s ease-in-out infinite alternate; animation-delay: var(--dl); }
 .f-bars u:last-child { background: #4a3fe0; }
-.f-ring { display: block; width: 9em; height: 9em; margin: 0 auto; border-radius: 50%; background: conic-gradient(#4a3fe0 0 68%, #dfe1ee 68% 100%); -webkit-mask: radial-gradient(circle, transparent 54%, #000 55%); mask: radial-gradient(circle, transparent 54%, #000 55%); animation: f-spin 24s linear infinite; }
-.f1 { right: 31%; top: 25%; --t: 5.2s; --r: -3deg; animation-delay: .5s, 1.7s; }
-.f2 { right: 1.5%; top: 9%; --t: 6.4s; --r: 3deg; animation-delay: .7s, 1.9s; }
-.f3 { right: 32%; bottom: 13%; --t: 7s; --r: 2deg; animation-delay: .9s, 2.1s; }
-.f4 { right: 1%; bottom: 12%; width: 15em; --t: 5.8s; --r: -2deg; animation-delay: 1.1s, 2.3s; }
-.f5 { left: max(-9.5em, calc((100vw - 1280px) / 2 - 23em)); top: 41%; --t: 6.6s; --r: 3deg; animation-delay: 1.3s, 2.5s; }
+.f-ring { display: block; width: 9em; height: 9em; margin: 0 auto; border-radius: 50%; background: conic-gradient(#4a3fe0 0 68%, #dfe1ee 68% 100%); -webkit-mask: radial-gradient(circle, transparent 54%, #000 55%); mask: radial-gradient(circle, transparent 54%, #000 55%); animation: f-spin 10s linear infinite; }
+.f1 { right: 31%; top: 25%; --t: 4.2s; --r: -4deg; --dx: 10px; animation-delay: .5s, 1.7s; }
+.f2 { right: 1.5%; top: 9%; --t: 5.2s; --r: 4deg; --dx: -12px; animation-delay: .7s, 1.9s; }
+.f3 { right: 32%; bottom: 13%; --t: 5.6s; --r: 3.5deg; --dx: 12px; animation-delay: .9s, 2.1s; }
+.f4 { right: 1%; bottom: 12%; width: 15em; --t: 4.6s; --r: -4deg; --dx: -10px; animation-delay: 1.1s, 2.3s; }
+.f5 { left: max(-9.5em, calc((100vw - 1280px) / 2 - 23em)); top: 41%; --t: 5s; --r: 4deg; --dx: 10px; animation-delay: 1.3s, 2.5s; }
 @keyframes f-in { from { opacity: 0; scale: .9; } to { opacity: 1; scale: 1; } }
-@keyframes f-float { from { translate: 0 0; rotate: 0deg; } to { translate: 0 -16px; rotate: var(--r); } }
-@keyframes f-bar { from { transform: scaleY(.7); } to { transform: scaleY(1); } }
+@keyframes f-float { from { translate: calc(var(--dx) * -1) 14px; rotate: calc(var(--r) * -1); } to { translate: var(--dx) -22px; rotate: var(--r); } }
+@keyframes f-bar { from { transform: scaleY(.5); } to { transform: scaleY(1); } }
 @keyframes f-spin { to { rotate: 360deg; } }
 @media (max-width: 1024px) { .f1, .f3 { display: none; } }
 @media (max-width: 768px) {
