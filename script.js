@@ -283,3 +283,18 @@ $(function(){
     window.addEventListener('load', request);
     request();
 })();
+
+/* ------------------------------------------------------------
+   案4：浮かぶカード。文字のない、画面の部品のような白いカードを 4 枚置く（動きは CSS）
+------------------------------------------------------------ */
+(function () {
+    var host = document.querySelector('.hero');
+    if (!host) return;
+    host.insertAdjacentHTML('afterbegin',
+        '<div class="hero-bg f-cards" aria-hidden="true">'
+        + '<div class="f-card f1"><b class="f-ic"></b><i></i><i class="s"></i></div>'
+        + '<div class="f-card f2"><div class="f-bars"><u style="--v:38%;--dl:-.4s"></u><u style="--v:55%;--dl:-1.6s"></u><u style="--v:46%;--dl:-.9s"></u><u style="--v:72%;--dl:-2.3s"></u><u style="--v:100%;--dl:-1.2s"></u></div><i class="s"></i></div>'
+        + '<div class="f-card f3"><i class="a"></i><i></i><i class="s"></i><i></i></div>'
+        + '<div class="f-card f4"><b class="f-ring"></b></div>'
+        + '</div>');
+})();
