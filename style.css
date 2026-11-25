@@ -679,11 +679,15 @@ main { overflow-x: clip; }
 .hero::before, .hero::after { pointer-events: none; }
 .hero-bg { position: absolute; pointer-events: none; }
 
-/* 案4 の色：案6 と同じ作りのネイビー版。ごく淡いグレー × 濃紺。背景の動きは pat-*.css（--p-* がその色） */
-.hero { --h-bg: #eef0f4; --h-text: #121212; --h-accent: #1d3f6e; --h-line: #121212; --h-chip-bg: #121212; --h-chip-text: #fff; --h-btn-bg: #1d3f6e; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #121212; --h-marker: rgba(29, 63, 110, .2);
-  --p-card: #fff; --p-edge: rgba(18, 18, 18, .05); --p-bar: #d9dde6; --p-accent: #1d3f6e; --p-shadow: rgba(20, 30, 55, .16); --p-paper: #fff; --p-print: #cdd3de; --p-route: rgba(18, 18, 18, .3); --p-grid: rgba(18, 18, 18, .07); }
-:root { --c-green: #1d3f6e; --c-green-deep: #1d3f6e; --c-bright: #a9c4ea; --c-link: #1d3f6e; --c-primary-hover: #2b5591; --c-bg-alt: #eef0f4; --sheen-on-white: rgba(29, 63, 110, .25); }
-.sec-risk .btn-cta { --sheen: rgba(29, 63, 110, .3); }
+/* 案5 の色：案6 と同じ作りの緑版。淡い緑 × N-Free の緑。背景の動きは pat-*.css（--p-* がその色）。お悩みセクション以降の色面は、それより淡い緑 */
+.hero { --h-bg: #eaf6f0; --h-text: #121212; --h-accent: #21b384; --h-line: #121212; --h-chip-bg: #121212; --h-chip-text: #fff; --h-btn-bg: #21b384; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #121212; --h-marker: rgba(33, 179, 132, .3);
+  --p-card: #fff; --p-edge: rgba(18, 18, 18, .05); --p-bar: #dbe9e2; --p-accent: #21b384; --p-shadow: rgba(20, 90, 65, .15); --p-paper: #fff; --p-print: #cbdcd4; --p-route: rgba(18, 18, 18, .3); --p-grid: rgba(18, 18, 18, .07); }
+:root { --c-green: #8fddbd; --c-bg-alt: #eef7f2; }
+/* 色面を淡くしたぶん、白地の上で文字や線として使う所は元の緑のままにする */
+.step-number { color: #21b384; }
+.voice { border-left-color: #21b384; }
+/* 淡い色面の上では白い数字が読めないので、濃い緑にする */
+.feature::before { color: #0c8f66; }
 
 /* 背景パターン「撮る→記帳される」：小さなレシートがトップ全体から曲線を描いてスマホ画像に吸い込まれ、チェックの付いた整った行になって出てくる（SVG は script.js が置く） */
 .w-flow { left: var(--px, 80%); top: var(--py, 50%); width: 1px; height: 1px; overflow: visible; animation: q-fade 1.6s ease-out both; }
@@ -697,15 +701,21 @@ main { overflow-x: clip; }
 .w-flow .w-sp { display: none; }
 @media (max-width: 768px) { .w-flow .w-pc { display: none; } .w-flow .w-sp { display: inline; } }
 
-/* 色面が濃い配色（ブルー・ネイビー）用：色面の上の文字・線・ロゴを白にし、ボタンは白地にする */
-.sec-features, .sec-final, .sec-price .statement, .sec .point:nth-child(1) { color: #fff; }
-.sec-features .sec-title, .sec-features h3, .sec .point:nth-child(1) h3 { color: #fff; }
-.sec-features .title-logo, .sec-price .statement-logo { filter: brightness(0) invert(1); }
-.sec-features .feature-list, .sec-features .feature, .sec-features .feature:nth-child(even) { border-color: rgba(255, 255, 255, .55); }
-.sec-features .feature::before { color: var(--c-bright); }
-.sec-features .feature p { color: rgba(255, 255, 255, .92); }
-.sec .point:nth-child(1) p { border-top-color: rgba(255, 255, 255, .4); }
-.sec-price .statement-note { color: rgba(255, 255, 255, .88); }
-.sec-features .cta-note, .sec-final .cta-note { color: #fff; }
-.sec-features .btn-cta, .sec-final .btn-cta { color: var(--c-green-deep); background: #fff; border-color: #fff; --sheen: var(--sheen-on-white); }
-.sec-features .btn-cta:hover, .sec-final .btn-cta:hover { color: var(--c-ink); background: var(--c-bright); border-color: var(--c-bright); }
+/* トップのボタン A：大きな丸いボタン。下に厚みがあり、押し込まれては戻る動きを繰り返す。
+   「期間限定」は黒いバッジにしてボタンの左上に乗せ、ボタンに合わせて弾む。矢印は白い丸の中 */
+.hero .hero-cta { margin-top: 60px; }
+.hero .btn-hero, .hero .btn-hero:hover { --edge: color-mix(in srgb, var(--h-btn-bg) 70%, #000); position: relative; overflow: visible; min-height: 96px; padding: 0 16px 0 48px; gap: 24px; font-size: 26px; letter-spacing: .04em; color: #fff; background: var(--h-btn-bg); border: 0; border-radius: 999px;
+  box-shadow: 0 9px 0 var(--edge), 0 24px 36px color-mix(in srgb, var(--h-btn-bg) 42%, transparent);
+  animation: btn-pop .7s cubic-bezier(.34, 1.56, .64, 1) 1.3s both, btn-press 1.5s cubic-bezier(.5, 0, .5, 1) 2.3s infinite; }
+.hero .btn-tag, .hero .btn-hero:hover .btn-tag { position: absolute; left: 22px; top: -20px; align-self: auto; padding: 7px 16px; font-size: 14px; font-weight: 900; letter-spacing: .08em; color: #fff; background: #121212; border-radius: 999px; transform-origin: 30% 100%; animation: btn-badge 1.5s cubic-bezier(.5, 0, .5, 1) 2.3s infinite; }
+.hero .btn-arrow { box-sizing: border-box; width: 64px; height: 64px; padding: 19px; margin-left: 8px; border-radius: 50%; color: var(--h-btn-bg); background: #fff; animation: btn-arrow 1.5s cubic-bezier(.5, 0, .5, 1) 2.3s infinite; }
+@keyframes btn-pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes btn-press { 0%, 100% { transform: translateY(0); box-shadow: 0 9px 0 var(--edge), 0 24px 36px color-mix(in srgb, var(--h-btn-bg) 42%, transparent); } 50% { transform: translateY(6px); box-shadow: 0 3px 0 var(--edge), 0 10px 18px color-mix(in srgb, var(--h-btn-bg) 42%, transparent); } }
+@keyframes btn-badge { 0%, 100% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(-10deg) scale(1.14); } }
+@keyframes btn-arrow { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-7px); } }
+@media (max-width: 768px) {
+  .hero .hero-cta { margin-top: 48px; }
+  .hero .btn-hero, .hero .btn-hero:hover { width: 100%; min-height: 80px; padding: 0 10px 0 28px; gap: 10px; font-size: 21px; justify-content: flex-start; }
+  .hero .btn-tag, .hero .btn-hero:hover .btn-tag { left: 16px; top: -16px; padding: 5px 13px; font-size: 13px; }
+  .hero .btn-arrow { width: 56px; height: 56px; padding: 17px; margin-left: auto; }
+}
